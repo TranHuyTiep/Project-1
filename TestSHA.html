@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>test</title>
+    <meta charset="utf-8" />
+    <script src="SHA.js"></script>
+    <script type="text/javascript">
+    </script>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>
+                <input type="text" size="40"id="ms" />
+                 <button id="hashPW" onclick="SHA()" >Hash</button>
+                 <div id="ViTri1"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type='file' accept='text/plain' size="40" onchange='openFile(event)'>
+               <div id="ViTri"></div>
+            </td>
+        </tr>
+    </table>
+    <script type="text/javascript">
+         function SHA() {
+            var ms = document.getElementById("ms").value;
+            var hash = SHA3_256(ms);
+          document.getElementById('ViTri1').innerHTML = hash;
+            }
+         var openFile = function(event) {
+          var input = event.target;
+            var reader = new FileReader();
+            reader.onload = function(){
+             var text = reader.result;
+             var node = document.getElementById('output');
+              var hash1 = SHA3_256(text);
+             document.getElementById('ViTri').innerHTML = hash1;
+            };
+            reader.readAsText(input.files[0]);
+      };
+    </script>
+</body>
+</html>
